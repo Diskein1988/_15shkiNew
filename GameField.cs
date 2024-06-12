@@ -138,7 +138,7 @@ namespace _15shkiNew
             }
             return result;
         }
-        private Item[] ToOneLvlArray()
+        private Item[] ToOneLvlArray() //перегонка из двухмерного в одномерный массив
         {
             Item[] temp = new Item[SIZE_X * SIZE_Y];
             int index = 0;
