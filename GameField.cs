@@ -22,10 +22,10 @@ namespace _15shkiNew
                     id++;
                 }
             }
-            Console.WriteLine("Создан");
+            Console.WriteLine("Создано игровое поле");
             Show();
             MixSlot();
-            Console.WriteLine("Перемешан");
+            Console.WriteLine("Игровое поле перемешано");
             Show();
         }
         private void MixSlot() // перемешивание фишек
@@ -138,6 +138,7 @@ namespace _15shkiNew
             }
             return result;
         }
+
         private Item[] ToOneLvlArray() //перегонка из двухмерного в одномерный массив
         {
             Item[] temp = new Item[SIZE_X * SIZE_Y];
