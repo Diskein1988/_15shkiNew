@@ -15,7 +15,7 @@ namespace _15shkiNew
             Console.ReadKey(true);
             Console.Clear();
         }
-        private string Hello = "Приветствую в игре \"Пятнашки\" v 1.0";
+        private string Hello = "Приветствую в игре \"Пятнашки\" v 1.1";
         private string StarMenu = "1 - Старт игры\n2 - Рекорды\n3 - Создатель\n0 - Выход";
 
         static void Main(string[] args)
@@ -32,13 +32,31 @@ namespace _15shkiNew
                     case 49: // Старт
                     GameField gameField = new GameField(); // тут создаю экземпляр класса
                     Console.WriteLine("Упарвление: 8 - вверх, 5 - вниз, 4 - влево, 6 - вправо или W/A/S/D");
-                    while (gameField.GameOver() == false) // создаю замкнутый цикл
+                    int readKey;
+                    while (true) // создаю замкнутый цикл
                     {
-                        gameField.MoveItem(gameManager.ReadKey());
-                        Console.Clear();
-                        gameField.Show();
+                        readKey = gameManager.ReadKey();
+                        if (readKey != 1081 && readKey != 113) // Q или Й для выхода
+                        {
+                            gameField.MoveItem(readKey);
+                            Console.Clear();
+                            gameField.Show();
+                            Console.WriteLine("Нажать \"Q\" для выхода в главное меню");
+                            if (gameField.GameOver() == true)
+                            {
+                                Console.Clear();
+                                Console.WriteLine("Винер винер чикен динер :D");
+                                Console.WriteLine("Press any key...");
+                                Console.ReadLine();
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            break;
+                        }
                     }
-                    Console.WriteLine("Винер винер чикен динер, ёгиль нюхат чиполинку!!!");
                     break;
                     case 50: // Рекорды
                     Console.Clear();
@@ -55,7 +73,6 @@ namespace _15shkiNew
                     break;
                     default:
                     break;
-
                 }
             }
             Console.WriteLine("Haжмитe <Enter> для выхода . . . ");

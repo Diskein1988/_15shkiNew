@@ -8,8 +8,8 @@ namespace _15shkiNew
 {
     internal class GameField
     {
-        private const int SIZE_X = 4;
-        private const int SIZE_Y = 4;
+        private const int SIZE_X = 3;
+        private const int SIZE_Y = 3;
         private Item[,] item = new Item[SIZE_X,SIZE_Y];
         public GameField()
         {
@@ -18,7 +18,7 @@ namespace _15shkiNew
             {
                 for (int j = 0; j < SIZE_Y; j++)
                 {
-                    item[i,j] = new Item(id <= 15 ? id : -1);
+                    item[i,j] = new Item(id <= ((SIZE_X*SIZE_Y)-1) ? id : -1);
                     id++;
                 }
             }
@@ -35,9 +35,9 @@ namespace _15shkiNew
             Random rnd = new Random((int)DateTime.Now.Ticks);
             for (int i = 0; i < 30; i++)
             {
-                int x = rnd.Next(0,16);
+                int x = rnd.Next(0,SIZE_X*SIZE_Y);
                 Thread.Sleep(10);
-                int y = rnd.Next(0,16);
+                int y = rnd.Next(0,SIZE_X * SIZE_Y);
                 temp = itemOneArray[x];
                 itemOneArray[x] = itemOneArray[y];
                 itemOneArray[y] = temp;
