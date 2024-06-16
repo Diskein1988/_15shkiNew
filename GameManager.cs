@@ -1,6 +1,4 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using System.Security.Cryptography;
-
 namespace _15shkiNew
 {
     internal class GameManager
@@ -23,7 +21,7 @@ namespace _15shkiNew
             Console.Clear();
         }
 
-        private string SetNickName (string nickName)
+        private string SetNickName(string nickName)
         {
             return nickName;
         }
@@ -43,50 +41,48 @@ namespace _15shkiNew
                 switch (gameManager.ReadKey())
                 {
                     case 49: // Старт
-                        GameField gameField = new GameField(); // тут создаю экземпляр класса
-                        Console.WriteLine("Упарвление: 8 - вверх, 5 - вниз, 4 - влево, 6 - вправо или W/A/S/D");
-                        int readKey;
-                        while (true) // создаю замкнутый цикл
+                    GameField gameField = new GameField(); // тут создаю экземпляр класса
+                    Console.WriteLine("Упарвление: 8 - вверх, 5 - вниз, 4 - влево, 6 - вправо или W/A/S/D");
+                    int readKey;
+                    while (true) // создаю замкнутый цикл
+                    {
+                        readKey = gameManager.ReadKey();
+                        if (readKey == 1081 || readKey == 113) // Q или Й для выхода
                         {
-                            readKey = gameManager.ReadKey();
-                            if (readKey != 1081 && readKey != 113) // Q или Й для выхода
-                            {
-                                gameField.MoveItem(readKey);
-                                Console.Clear();
-                                gameField.Show();
-                                Console.WriteLine("Нажать \"Q\" для выхода в главное меню");
-                                if (gameField.GameOver() == true)
-                                {
-                                    Console.Clear();
-                                    Console.WriteLine("Винер винер чикен динер :D");
-                                    Console.WriteLine("Press any key...");
-                                    Console.ReadLine();
-                                    break;
-                                }
-                            }
-                            else
-                            {
-                                Console.Clear();
-                                break;
-                            }
-
+                            Console.Clear();
+                            break;
                         }
-                        break;
+                        gameField.MoveItem(readKey);
+                        Console.Clear();
+                        gameField.Show();
+                        Console.WriteLine("Нажать \"Q\" для выхода в главное меню");
+                        if (gameField.GameWin())
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Винер винер чикен динер :D");
+                            Console.WriteLine("Press any key...");
+                            Console.ReadLine();
+                            break;
+                        }
+
+
+                    }
+                    break;
                     case 50: // Рекорды
-                        Console.Clear();
-                        Console.WriteLine("Тут пока не чего нет\n");
-                        gameManager.ReturnStartMenu();
-                        break;
+                    Console.Clear();
+                    Console.WriteLine("Тут пока не чего нет\n");
+                    gameManager.ReturnStartMenu();
+                    break;
                     case 51: // Создатель
-                        Console.Clear();
-                        Console.WriteLine("Created by -=Diskein=-\n");
-                        gameManager.ReturnStartMenu();
-                        break;
+                    Console.Clear();
+                    Console.WriteLine("Created by -=Diskein=-\n");
+                    gameManager.ReturnStartMenu();
+                    break;
                     case 48: // Выход
-                        exitGame = true;
-                        break;
+                    exitGame = true;
+                    break;
                     default:
-                        break;
+                    break;
                 }
             }
             Console.WriteLine("Haжмитe <Enter> для выхода . . . ");

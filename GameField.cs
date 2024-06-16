@@ -60,7 +60,7 @@
             Console.WriteLine();
         }
 
-        public bool GameOver() // метод для проверки на победу
+        public bool GameWin() // метод для проверки на победу
         {
             int id = 1;
             for (int i = 0; i < SIZE_X; i++)
