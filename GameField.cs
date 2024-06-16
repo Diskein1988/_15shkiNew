@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _15shkiNew
+﻿namespace _15shkiNew
 {
     internal class GameField
     {
         private const int SIZE_X = 3;
         private const int SIZE_Y = 3;
-        private Item[,] item = new Item[SIZE_X,SIZE_Y];
+        private Item[,] item = new Item[SIZE_X, SIZE_Y];
         public GameField()
         {
             int id = 1;
@@ -18,7 +12,7 @@ namespace _15shkiNew
             {
                 for (int j = 0; j < SIZE_Y; j++)
                 {
-                    item[i,j] = new Item(id <= ((SIZE_X*SIZE_Y)-1) ? id : -1);
+                    item[i, j] = new Item(id <= ((SIZE_X * SIZE_Y) - 1) ? id : -1);
                     id++;
                 }
             }
@@ -35,9 +29,9 @@ namespace _15shkiNew
             Random rnd = new Random((int)DateTime.Now.Ticks);
             for (int i = 0; i < 30; i++)
             {
-                int x = rnd.Next(0,SIZE_X*SIZE_Y);
+                int x = rnd.Next(0, SIZE_X * SIZE_Y);
                 Thread.Sleep(10);
-                int y = rnd.Next(0,SIZE_X * SIZE_Y);
+                int y = rnd.Next(0, SIZE_X * SIZE_Y);
                 temp = itemOneArray[x];
                 itemOneArray[x] = itemOneArray[y];
                 itemOneArray[y] = temp;
@@ -47,7 +41,7 @@ namespace _15shkiNew
             {
                 for (int j = 0; j < SIZE_Y; j++)
                 {
-                    item[i,j] = itemOneArray[index++];
+                    item[i, j] = itemOneArray[index++];
                 }
             }
         }
@@ -59,7 +53,7 @@ namespace _15shkiNew
                 Console.Write("|");
                 for (int j = 0; j < SIZE_Y; j++)
                 {
-                    Console.Write(" {0,2} |",item[i,j].ID);
+                    Console.Write(" {0,2} |", item[i, j].ID);
                 }
                 Console.WriteLine();
             }
@@ -73,7 +67,7 @@ namespace _15shkiNew
             {
                 for (int j = 0; j < SIZE_Y; j++)
                 {
-                    if ((item[i,j].ID != id) && (item[i,j].ID != -1))
+                    if ((item[i, j].ID != id) && (item[i, j].ID != -1))
                     {
                         return false;
                     }
@@ -93,25 +87,25 @@ namespace _15shkiNew
                 switch (move)
                 {
                     case 56 or 119 or 1094: //Вверх 8
-                    temp = item[ZZERO[0] - 1,ZZERO[1]];
-                    item[ZZERO[0] - 1,ZZERO[1]] = item[ZZERO[0],ZZERO[1]];
-                    item[ZZERO[0],ZZERO[1]] = temp;
-                    break;
+                        temp = item[ZZERO[0] - 1, ZZERO[1]];
+                        item[ZZERO[0] - 1, ZZERO[1]] = item[ZZERO[0], ZZERO[1]];
+                        item[ZZERO[0], ZZERO[1]] = temp;
+                        break;
                     case 53 or 115 or 1099: //Вниз 2
-                    temp = item[ZZERO[0] + 1,ZZERO[1]];
-                    item[ZZERO[0] + 1,ZZERO[1]] = item[ZZERO[0],ZZERO[1]];
-                    item[ZZERO[0],ZZERO[1]] = temp;
-                    break;
+                        temp = item[ZZERO[0] + 1, ZZERO[1]];
+                        item[ZZERO[0] + 1, ZZERO[1]] = item[ZZERO[0], ZZERO[1]];
+                        item[ZZERO[0], ZZERO[1]] = temp;
+                        break;
                     case 52 or 97 or 1092: //Влево 4
-                    temp = item[ZZERO[0],ZZERO[1] - 1];
-                    item[ZZERO[0],ZZERO[1] - 1] = item[ZZERO[0],ZZERO[1]];
-                    item[ZZERO[0],ZZERO[1]] = temp;
-                    break;
+                        temp = item[ZZERO[0], ZZERO[1] - 1];
+                        item[ZZERO[0], ZZERO[1] - 1] = item[ZZERO[0], ZZERO[1]];
+                        item[ZZERO[0], ZZERO[1]] = temp;
+                        break;
                     case 54 or 100 or 1074: //Впрао 6
-                    temp = item[ZZERO[0],ZZERO[1] + 1];
-                    item[ZZERO[0],ZZERO[1] + 1] = item[ZZERO[0],ZZERO[1]];
-                    item[ZZERO[0],ZZERO[1]] = temp;
-                    break;
+                        temp = item[ZZERO[0], ZZERO[1] + 1];
+                        item[ZZERO[0], ZZERO[1] + 1] = item[ZZERO[0], ZZERO[1]];
+                        item[ZZERO[0], ZZERO[1]] = temp;
+                        break;
                     default: Console.WriteLine("Не премещенно"); break;
                 }
             }
@@ -128,7 +122,7 @@ namespace _15shkiNew
             {
                 for (int y = 0; y < SIZE_Y; y++)
                 {
-                    if (item[x,y].ID == -1)
+                    if (item[x, y].ID == -1)
                     {
                         result[0] = x;
                         result[1] = y;
@@ -147,7 +141,7 @@ namespace _15shkiNew
             {
                 for (int j = 0; j < SIZE_Y; j++)
                 {
-                    temp[index++] = item[i,j];
+                    temp[index++] = item[i, j];
                 }
             }
             return temp;

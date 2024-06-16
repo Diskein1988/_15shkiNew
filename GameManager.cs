@@ -69,6 +69,7 @@ namespace _15shkiNew
                                 Console.Clear();
                                 break;
                             }
+
                         }
                         break;
                     case 50: // Рекорды
