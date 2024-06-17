@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <StartupObject>_15shkiNew.GameManager</StartupObject>
+    <StartupObject>_15shkiNew.MainApp</StartupObject>
   </PropertyGroup>
 
 </Project>
