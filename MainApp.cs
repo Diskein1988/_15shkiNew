@@ -1,10 +1,22 @@
-﻿namespace _15shkiNew
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _15shkiNew
 {
     internal class MainApp
     {
-        private string hello = "Приветствую в игре \"Пятнашки\" v 1.2";
-        private string starMenu = "1 - Старт игры\n2 - Рекорды\n3 - Создатель\n0 - Выход";
-        private string control = "Упарвление: 8 - вверх, 5 - вниз, 4 - влево, 6 - вправо или W/A/S/D";
+        private string Hello = "Приветствую в игре \"Пятнашки\" v 1.1";
+        private string StarMenu = "1 - Старт игры\n2 - Рекорды\n3 - Создатель\n0 - Выход";
+
+        private int ReadKey()
+        {
+            ConsoleKeyInfo key;
+            key = Console.ReadKey(true);
+            return (int)key.KeyChar;
+        }
 
         private void ReturnStartMenu()
         {
@@ -21,51 +33,30 @@
             bool exitGame = false;
             while (!exitGame)
             {
-                Console.WriteLine(mainApp.hello);
-                Console.WriteLine(mainApp.starMenu);
+                Console.WriteLine(mainApp.Hello);
+                Console.WriteLine(mainApp.StarMenu);
 
-                switch (keyReading.PressKey())
+                switch (mainApp.ReadKey())
                 {
-                    case KeyReading.StartMenu.start: // Старт
-                    GameManager manager = new GameManager();
-                    Console.WriteLine(mainApp.control);
-                    int readKey;
-                    while (true)
-                    {
-                        readKey = keyReading.readKey;
-                        if (readKey == 1081 || readKey == 113)
-                        {
-                            Console.Clear();
-                            break;
-                        }
-                        manager.MoveItem(readKey);
-                        if (manager.GameWin())
-                        {
-                            Console.Clear();
-                            Console.WriteLine("Винер винер чикен динер");
-                            Console.WriteLine("Press any key...");
-                            Console.ReadLine();
-                            break;
-                        }
-                        Console.Clear();
-                        manager.Show();
-                        Console.WriteLine("Нажать \'Q\' для выхода");
-                    }
+                    case 49: // Старт
+                        GameManager manager = new GameManager();
+                        Console.WriteLine("Упарвление: 8 - вверх, 5 - вниз, 4 - влево, 6 - вправо или W/A/S/D");
+
                     break;
 
-                    case KeyReading.StartMenu.score: // Рекорды
+                    case 50: // Рекорды
                         Console.Clear();
                         Console.WriteLine("Тут пока не чего нет\n");
                         mainApp.ReturnStartMenu();
                     break;
 
-                    case KeyReading.StartMenu.credits: // Создатель
+                    case 51: // Создатель
                         Console.Clear();
                         Console.WriteLine("Created by -=Diskein=-\n");
                         mainApp.ReturnStartMenu();
                     break;
 
-                    case KeyReading.StartMenu.exit: // Выход
+                    case 48: // Выход
                         exitGame = true;
                     break;
 

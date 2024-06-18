@@ -1,8 +1,14 @@
-﻿namespace _15shkiNew
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _15shkiNew
 {
     internal class KeyReading
     {
-        private char ReadKey()
+        private int ReadKey()
         {
             ConsoleKeyInfo key;
             key = Console.ReadKey(true);
@@ -13,28 +19,22 @@
         {
             switch (ReadKey())
             {
-                case '1':
+                case 1:
                     return StartMenu.start;
-                case '2':
+                case 2:
                     return StartMenu.score;
-                case '3':
+                case 3:
                     return StartMenu.credits;
-                case '0':
+                case 0:
                     return StartMenu.exit;
                 default:
                     return StartMenu.exit;
 
             }
         }
-        public int readKey
-        {
-            get
-            {
-               return ReadKey();
-            }
-        }
 
-        public enum StartMenu
+
+        enum StartMenu
         {
             start,
             score,
