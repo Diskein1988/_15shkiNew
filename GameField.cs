@@ -2,7 +2,6 @@
 {
     internal class GameField
     {
-
         private Item[,] item;
         public GameField(int SIZE_X, int SIZE_Y)
         {
