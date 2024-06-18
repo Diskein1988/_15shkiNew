@@ -2,9 +2,9 @@
 {
     internal class MainApp
     {
-        private string Hello = "Приветствую в игре \"Пятнашки\" v 1.2";
-        private string StarMenu = "1 - Старт игры\n2 - Рекорды\n3 - Создатель\n0 - Выход";
-        private string Control = "Упарвление: 8 - вверх, 5 - вниз, 4 - влево, 6 - вправо или W/A/S/D";
+        private string hello = "Приветствую в игре \"Пятнашки\" v 1.2";
+        private string starMenu = "1 - Старт игры\n2 - Рекорды\n3 - Создатель\n0 - Выход";
+        private string control = "Упарвление: 8 - вверх, 5 - вниз, 4 - влево, 6 - вправо или W/A/S/D";
 
         private void ReturnStartMenu()
         {
@@ -21,14 +21,14 @@
             bool exitGame = false;
             while (!exitGame)
             {
-                Console.WriteLine(mainApp.Hello);
-                Console.WriteLine(mainApp.StarMenu);
+                Console.WriteLine(mainApp.hello);
+                Console.WriteLine(mainApp.starMenu);
 
                 switch (keyReading.PressKey())
                 {
                     case KeyReading.StartMenu.start: // Старт
                     GameManager manager = new GameManager();
-                    Console.WriteLine(mainApp.Control);
+                    Console.WriteLine(mainApp.control);
                     int readKey;
                     while (true)
                     {
@@ -51,7 +51,6 @@
                         manager.Show();
                         Console.WriteLine("Нажать \'Q\' для выхода");
                     }
-
                     break;
 
                     case KeyReading.StartMenu.score: // Рекорды
