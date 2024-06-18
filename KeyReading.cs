@@ -9,8 +9,9 @@
             return key.KeyChar;
         }
 
-        public Enum PressKey()
+        public Enum? PressKey()
         {
+
             switch (ReadKey())
             {
                 case '1':
@@ -22,9 +23,11 @@
                 case '0':
                     return StartMenu.exit;
                 default:
-                    return StartMenu.exit;
-
+                    Console.Clear();
+                    return null;
             }
+
+
         }
         public int readKey
         {
