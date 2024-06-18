@@ -1,5 +1,12 @@
 ﻿namespace _15shkiNew
 {
+    public enum StartMenu
+    {
+        START,
+        SCORE,
+        CREATER,
+        EXIT
+    }
     internal class KeyReading
     {
         private char ReadKey()
@@ -15,13 +22,13 @@
             switch (ReadKey())
             {
                 case '1':
-                    return StartMenu.start;
+                    return StartMenu.START;
                 case '2':
-                    return StartMenu.score;
+                    return StartMenu.SCORE;
                 case '3':
-                    return StartMenu.credits;
+                    return StartMenu.CREATER;
                 case '0':
-                    return StartMenu.exit;
+                    return StartMenu.EXIT;
                 default:
                     Console.Clear();
                     return null;
@@ -37,12 +44,5 @@
             }
         }
 
-        public enum StartMenu
-        {
-            start,
-            score,
-            credits,
-            exit
-        }
     }
 }

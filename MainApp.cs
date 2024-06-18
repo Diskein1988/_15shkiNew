@@ -26,7 +26,7 @@
 
                 switch (keyReading.PressKey())
                 {
-                    case KeyReading.StartMenu.start: // Старт
+                    case StartMenu.START: // Старт
                     GameManager manager = new GameManager();
                     Console.WriteLine(mainApp.control);
                     int readKey;
@@ -53,19 +53,19 @@
                     }
                     break;
 
-                    case KeyReading.StartMenu.score: // Рекорды
+                    case StartMenu.SCORE: // Рекорды
                         Console.Clear();
                         Console.WriteLine("Тут пока не чего нет\n");
                         mainApp.ReturnStartMenu();
                     break;
 
-                    case KeyReading.StartMenu.credits: // Создатель
+                    case StartMenu.CREATER: // Создатель
                         Console.Clear();
                         Console.WriteLine("Created by -=Diskein=-\n");
                         mainApp.ReturnStartMenu();
                     break;
 
-                    case KeyReading.StartMenu.exit: // Выход
+                    case StartMenu.EXIT: // Выход
                         exitGame = true;
                     break;
 
