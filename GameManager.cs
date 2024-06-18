@@ -3,14 +3,12 @@
     internal class GameManager
     {
         private GameField gameField;
-        private readonly int SIZE_X;
-        private readonly int SIZE_Y;
+        private const int SIZE_X = 3;
+        private const int SIZE_Y = 3;
 
         public GameManager()
         {
-            gameField = new GameField();
-            SIZE_X = gameField.size_x;
-            SIZE_Y = gameField.size_y;
+            gameField = new GameField(SIZE_X,SIZE_Y);
             Console.WriteLine("Игровое поле создано");
             Show();
             MixSlot();

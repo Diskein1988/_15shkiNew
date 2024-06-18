@@ -2,11 +2,11 @@
 {
     internal class GameField
     {
-        private const int SIZE_X = 3;
-        private const int SIZE_Y = 3;
-        private Item[,] item = new Item[SIZE_X,SIZE_Y];
-        public GameField()
+
+        private Item[,] item;
+        public GameField(int SIZE_X, int SIZE_Y)
         {
+            item = new Item[SIZE_X, SIZE_Y];
             int id = 1;
             for (int i = 0; i < SIZE_X; i++)
             {
@@ -31,21 +31,6 @@
             }
         }
 
-        public int size_x
-        {
-            get
-            {
-                return SIZE_X;
-            }
-        }
-
-        public int size_y
-        {
-            get
-            {
-                return SIZE_Y;
-            }
-        }
 
     }
 
