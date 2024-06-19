@@ -19,27 +19,27 @@
             KeyReading keyReading = new KeyReading();
             Console.Title = "Пятнашки";
             bool exitGame = false;
-            while( !exitGame )
+            while ( !exitGame )
             {
                 Console.WriteLine( mainApp.hello );
                 Console.WriteLine( mainApp.starMenu );
 
-                switch( keyReading.PressKey() )
+                switch ( keyReading.PressKeyInStartMenu() )
                 {
                     case StartMenu.START: // Старт
                         GameManager manager = new GameManager();
                         Console.WriteLine( mainApp.control );
-                        int readKey;
-                        while( true )
+                        char readKey;
+                        while ( true )
                         {
-                            readKey = keyReading.readKey;
-                            if( readKey == 1081 || readKey == 113 )
+                            readKey = keyReading.ReadKey();
+                            if ( readKey == 'q' || readKey == 'й'  )
                             {
                                 Console.Clear();
                                 break;
                             }
-                            manager.MoveItem( readKey );
-                            if( manager.GameWin() )
+                            manager.MoveItem = readKey;
+                            if ( manager.GameWin )
                             {
                                 Console.Clear();
                                 Console.WriteLine( "Винер винер чикен динер" );
@@ -73,7 +73,7 @@
                 }
             }
             Console.WriteLine( "Haжмитe <Enter> для выхода . . . " );
-            Console.Read();
+            Console.ReadKey(true);
         }
 
     }

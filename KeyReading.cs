@@ -7,19 +7,27 @@
         CREATER,
         EXIT
     }
+
+    public enum MoveItemInGames
+    {
+        MUVE_UP,
+        MUVE_DOWN,
+        MUVE_LEFT,
+        MUVE_RIGHT,
+        EXIT
+    }
     internal class KeyReading
     {
-        private char ReadKey()
+        public char ReadKey()
         {
             ConsoleKeyInfo key;
             key = Console.ReadKey( true );
             return key.KeyChar;
         }
 
-        public Enum? PressKey()
+        public Enum? PressKeyInStartMenu()
         {
-
-            switch( ReadKey() )
+            switch ( ReadKey() )
             {
                 case '1':
                     return StartMenu.START;
@@ -33,16 +41,24 @@
                     Console.Clear();
                     return null;
             }
-
-
         }
-        public int readKey
+
+        public Enum? MoveItemInGame()
         {
-            get
+            switch ( ReadKey() )
             {
-                return ReadKey();
+                case '8' or 'w':
+                    return MoveItemInGames.MUVE_UP;
+                case '5' or 's':
+                    return MoveItemInGames.MUVE_DOWN;
+                case '4' or 'a':
+                    return MoveItemInGames.MUVE_LEFT;
+                case '6' or 'd':
+                    return MoveItemInGames.MUVE_RIGHT;
+                default:
+                    Console.Clear();
+                    return null;
             }
         }
-
     }
 }
