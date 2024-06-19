@@ -12,14 +12,14 @@
         private char ReadKey()
         {
             ConsoleKeyInfo key;
-            key = Console.ReadKey(true);
+            key = Console.ReadKey( true );
             return key.KeyChar;
         }
 
         public Enum? PressKey()
         {
 
-            switch (ReadKey())
+            switch( ReadKey() )
             {
                 case '1':
                     return StartMenu.START;
@@ -40,7 +40,7 @@
         {
             get
             {
-               return ReadKey();
+                return ReadKey();
             }
         }
 

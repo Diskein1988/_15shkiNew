@@ -8,71 +8,71 @@
 
         private void ReturnStartMenu()
         {
-            Console.WriteLine("Нажмите любую клавишу для выхода в главное меню");
-            Console.ReadKey(true);
+            Console.WriteLine( "Нажмите любую клавишу для выхода в главное меню" );
+            Console.ReadKey( true );
             Console.Clear();
         }
 
-        private static void Main(string[] args)
+        private static void Main( string[] args )
         {
             MainApp mainApp = new MainApp();
             KeyReading keyReading = new KeyReading();
             Console.Title = "Пятнашки";
             bool exitGame = false;
-            while (!exitGame)
+            while( !exitGame )
             {
-                Console.WriteLine(mainApp.hello);
-                Console.WriteLine(mainApp.starMenu);
+                Console.WriteLine( mainApp.hello );
+                Console.WriteLine( mainApp.starMenu );
 
-                switch (keyReading.PressKey())
+                switch( keyReading.PressKey() )
                 {
                     case StartMenu.START: // Старт
-                    GameManager manager = new GameManager();
-                    Console.WriteLine(mainApp.control);
-                    int readKey;
-                    while (true)
-                    {
-                        readKey = keyReading.readKey;
-                        if (readKey == 1081 || readKey == 113)
+                        GameManager manager = new GameManager();
+                        Console.WriteLine( mainApp.control );
+                        int readKey;
+                        while( true )
                         {
+                            readKey = keyReading.readKey;
+                            if( readKey == 1081 || readKey == 113 )
+                            {
+                                Console.Clear();
+                                break;
+                            }
+                            manager.MoveItem( readKey );
+                            if( manager.GameWin() )
+                            {
+                                Console.Clear();
+                                Console.WriteLine( "Винер винер чикен динер" );
+                                Console.WriteLine( "Press any key..." );
+                                Console.ReadLine();
+                                break;
+                            }
                             Console.Clear();
-                            break;
+                            manager.Show();
+                            Console.WriteLine( "Нажать \'Q\' для выхода" );
                         }
-                        manager.MoveItem(readKey);
-                        if (manager.GameWin())
-                        {
-                            Console.Clear();
-                            Console.WriteLine("Винер винер чикен динер");
-                            Console.WriteLine("Press any key...");
-                            Console.ReadLine();
-                            break;
-                        }
-                        Console.Clear();
-                        manager.Show();
-                        Console.WriteLine("Нажать \'Q\' для выхода");
-                    }
-                    break;
+                        break;
 
                     case StartMenu.SCORE: // Рекорды
                         Console.Clear();
-                        Console.WriteLine("Тут пока не чего нет\n");
+                        Console.WriteLine( "Тут пока не чего нет\n" );
                         mainApp.ReturnStartMenu();
-                    break;
+                        break;
 
                     case StartMenu.CREATER: // Создатель
                         Console.Clear();
-                        Console.WriteLine("Created by -=Diskein=-\n");
+                        Console.WriteLine( "Created by -=Diskein=-\n" );
                         mainApp.ReturnStartMenu();
-                    break;
+                        break;
 
                     case StartMenu.EXIT: // Выход
                         exitGame = true;
-                    break;
+                        break;
 
                     default: break;
                 }
             }
-            Console.WriteLine("Haжмитe <Enter> для выхода . . . ");
+            Console.WriteLine( "Haжмитe <Enter> для выхода . . . " );
             Console.Read();
         }
 
