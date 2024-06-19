@@ -33,7 +33,7 @@
                         while ( true )
                         {
                             readKey = keyReading.ReadKey();
-                            if ( readKey == 'q' || readKey == 'й'  )
+                            if ( readKey == 'q' || readKey == 'й' )
                             {
                                 Console.Clear();
                                 break;
@@ -73,7 +73,7 @@
                 }
             }
             Console.WriteLine( "Haжмитe <Enter> для выхода . . . " );
-            Console.ReadKey(true);
+            Console.ReadKey( true );
         }
 
     }

@@ -23,11 +23,12 @@
             }
         }
 
-        public void Show()
+        public Action Show
         {
-
-            gameField.Show();
-
+            get
+            {
+                return gameField.Show;
+            }
         }
 
     }
