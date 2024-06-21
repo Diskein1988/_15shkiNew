@@ -8,28 +8,19 @@
         {
             gameField = new GameField();
         }
-        public bool GameWin
+        public bool GameWin()
         {
-            get
-            {
                 return gameField.GameWin();
-            }
-        }
-        public char MoveItem
-        {
-            set
-            {
-                gameField.MoveItem( value );
-            }
         }
 
-        public Action Show
+        public void MoveItem( char ch)
         {
-            get
-            {
-                return gameField.Show;
-            }
+                gameField.MoveItem( ch );
         }
 
+        public void Show()
+        {
+               gameField.Show();
+        }
     }
 }

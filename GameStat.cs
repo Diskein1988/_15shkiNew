@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _15shkiNew
+﻿namespace _15shkiNew
 {   
     internal class GameStat
     {
-        public GameStat(string txt) 
+        public GameStat() 
         {
-            NickName = txt;
+            Console.Write( "Введи ваше имя: " );
+            string nick = Console.ReadLine();
+            NickName = nick != null ? nick :nick = "Тупой";
         }
         public string NickName { get; }
     }

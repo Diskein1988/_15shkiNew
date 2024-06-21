@@ -17,11 +17,14 @@
         {
             MainApp mainApp = new MainApp();
             KeyReading keyReading = new KeyReading();
+            GameStat gameStat = new GameStat();
             Console.Title = "Пятнашки";
             bool exitGame = false;
             while ( !exitGame )
             {
+
                 Console.WriteLine( mainApp.hello );
+                Console.WriteLine(gameStat.NickName);
                 Console.WriteLine( mainApp.starMenu );
 
                 switch ( keyReading.PressKeyInStartMenu() )
@@ -38,8 +41,8 @@
                                 Console.Clear();
                                 break;
                             }
-                            manager.MoveItem = readKey;
-                            if ( manager.GameWin )
+                            manager.MoveItem( readKey );
+                            if ( manager.GameWin() )
                             {
                                 Console.Clear();
                                 Console.WriteLine( "Винер винер чикен динер" );
