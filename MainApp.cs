@@ -10,7 +10,7 @@
         private Enum? selectMenu;
         private KeyReading keyReading;
         private GameStat gameStat;
-        private GameManager manager;
+        public GameManager manager;
 
         public MainApp()
         {
@@ -21,16 +21,6 @@
 
         }
 
-        private void GameSession()
-        {
-
-        }
-
-        private void ShowStartMenu( bool boo )
-        {
-
-        }
-
         private void ReturnStartMenu()
         {
             Console.WriteLine( "Нажмите любую клавишу для выхода в главное меню" );
@@ -38,16 +28,10 @@
             Console.Clear();
         }
 
-        private void Score()
-        {
-            Console.Clear();
-            Console.WriteLine( "Тут пока не чего нет\n" );
-            ReturnStartMenu();
-        }
-
         private static void Main( string[] args )
         {
             MainApp mainApp = new();
+            GameUpdate update = new( ref mainApp );
             while ( !exitGame )
             {
                 if ( !startGameSession )
@@ -90,7 +74,9 @@
                         break;
 
                     case StartMenu.SCORE: // Рекорды
-                        mainApp.Score();
+                        Console.Clear();
+                        Console.WriteLine( "Тут пока не чего нет\n" );
+                        mainApp.ReturnStartMenu();
                         break;
 
                     case StartMenu.CREATER: // Создатель
