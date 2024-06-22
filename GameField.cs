@@ -18,11 +18,11 @@
                     id++;
                 }
             }
-            Console.WriteLine( "Игровое поле созданно" );
-            Show();
+            //Console.WriteLine( "Игровое поле созданно" );
+            //Show();
             MixSlot();
-            Console.WriteLine( "Игровое поле перемешанно" );
-            Show();
+            //Console.WriteLine( "Игровое поле перемешанно" );
+            //Show();
 
         }
 

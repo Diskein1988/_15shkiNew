@@ -6,7 +6,7 @@
         {
             Console.Write( "Введи ваше имя: " );
             string nick = Console.ReadLine();
-            NickName = nick != null ? nick :nick = "Тупой";
+            NickName = nick != null ? nick : nick = "Тупой";
         }
         public string NickName { get; }
     }
