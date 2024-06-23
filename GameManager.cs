@@ -38,7 +38,11 @@
 
         public void ResetGame()
         {
-            gameField = new();
+            if ( instance != null )
+            {
+                gameField = new();
+            }
         }
+
     }
 }
