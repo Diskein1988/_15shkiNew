@@ -18,12 +18,7 @@
                     id++;
                 }
             }
-            //Console.WriteLine( "Игровое поле созданно" );
-            //Show();
             MixSlot();
-            //Console.WriteLine( "Игровое поле перемешанно" );
-            //Show();
-
         }
 
         public void Show()// метод для отображения поля

@@ -18,6 +18,21 @@
     }
     internal class KeyReading
     {
+        private static KeyReading? instance = null;
+
+        private KeyReading() { }
+
+        public static KeyReading GetInstance
+        {
+            get
+            {
+                if ( instance == null )
+                    instance = new KeyReading();
+
+                return instance;
+            }
+        }
+
         public char ReadKey()
         {
             ConsoleKeyInfo key;

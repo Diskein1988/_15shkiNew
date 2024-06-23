@@ -3,24 +3,37 @@
     internal class GameManager
     {
         private GameField gameField;
+        private static GameManager? instance = null;
 
-        public GameManager()
+        private GameManager()
         {
             gameField = new GameField();
         }
-        public bool GameWin()
+
+        public static GameManager GetInstance
         {
-                return gameField.GameWin();
+            get
+            {
+                if ( instance == null )
+                    instance = new GameManager();
+
+                return instance;
+            }
         }
 
-        public void MoveItem( char ch)
+        public bool GameWin()
         {
-                gameField.MoveItem( ch );
+            return gameField.GameWin();
+        }
+
+        public void MoveItem( char ch )
+        {
+            gameField.MoveItem( ch );
         }
 
         public void Show()
         {
-               gameField.Show();
+            gameField.Show();
         }
     }
 }
