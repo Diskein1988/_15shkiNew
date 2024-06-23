@@ -7,7 +7,7 @@
 
         private GameManager()
         {
-            gameField = new GameField();
+            gameField = new();
         }
 
         public static GameManager GetInstance
@@ -34,6 +34,11 @@
         public void Show()
         {
             gameField.Show();
+        }
+
+        public void ResetGame()
+        {
+            gameField = new();
         }
     }
 }

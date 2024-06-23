@@ -52,6 +52,7 @@ namespace _15shkiNew
                     if ( readKey == 'q' || readKey == 'й' )
                     {
                         startGameSession = false;
+                        manager.ResetGame();
                         Console.Clear();
                         break;
                     }
@@ -63,6 +64,7 @@ namespace _15shkiNew
                         Console.WriteLine( "Press any key..." );
                         Console.ReadLine();
                         startGameSession = false;
+                        manager.ResetGame();
                         break;
                     }
                     Console.Clear();
