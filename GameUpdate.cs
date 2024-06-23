@@ -8,7 +8,6 @@ namespace _15shkiNew
         private string control = "Упарвление: 8 - вверх, 5 - вниз, 4 - влево, 6 - вправо или W/A/S/D";
         private GameManager manager;
         private KeyReading keyReading;
-        private Enum? selectMenu;
         private static GameUpdate? instance = null;
         private static bool exitGame = false;
         private static bool startGameSession = false;
