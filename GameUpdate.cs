@@ -9,6 +9,7 @@ namespace _15shkiNew
         MoveItemInGames inGames = MoveItemInGames.NONE;
         private GameManager manager;
         private KeyReading keyReading;
+        private Timer timer;
         private static GameUpdate? instance = null;
         private static bool exitGame = false;
         private static bool startGameSession = false;
@@ -17,6 +18,7 @@ namespace _15shkiNew
         {
             manager = GameManager.GetInstance;
             keyReading = KeyReading.GetInstance;
+            timer = Timer.GetInstance;
         }
 
         public static GameUpdate GetInstance
@@ -68,7 +70,7 @@ namespace _15shkiNew
 
                 case StartMenu.SCORE: // Рекорды
                     Console.Clear();
-                    Console.WriteLine( "Тут пока не чего нет\n" );
+                    timer.Start();
                     ReturnStartMenu();
                     break;
 

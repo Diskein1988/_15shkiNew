@@ -2,7 +2,6 @@
 {
     internal class Player
     {
-        private static Player? instance;
 
         public Player( string name )
         {

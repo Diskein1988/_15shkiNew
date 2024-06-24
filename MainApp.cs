@@ -3,7 +3,7 @@
     internal class MainApp
     {
         private string hello = "Приветствую в игре \"Пятнашки\" v 1.2";
-        private string starMenu = "1 - Старт игры\n2 - Рекорды\n3 - Создатель\n0 - Выход";
+        private string starMenu = "Стартовое меню:\n1 - Старт игры\n2 - Рекорды\n3 - Создатель\n0 - Выход";
         private KeyReading keyReading;
         private GameStat gameStat;
         private GameManager manager;
