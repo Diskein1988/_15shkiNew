@@ -27,7 +27,7 @@
                 if ( !mainApp.gameUpdate.StartGameSession )
                 {
                     Console.WriteLine( mainApp.hello );
-                    Console.WriteLine( mainApp.gameStat.NickName );
+                    Console.WriteLine( mainApp.gameStat.ShowNickName() );
                     Console.WriteLine( mainApp.starMenu );
                     mainApp.gameUpdate.Update( mainApp.keyReading.PressKeyInStartMenu() );
                     Console.Clear();

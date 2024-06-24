@@ -5,16 +5,18 @@
         START,
         SCORE,
         CREATER,
-        EXIT
+        EXIT,
+        NONE
     }
 
     public enum MoveItemInGames
     {
-        MUVE_UP,
-        MUVE_DOWN,
-        MUVE_LEFT,
-        MUVE_RIGHT,
-        EXIT
+        MOVE_UP,
+        MOVE_DOWN,
+        MOVE_LEFT,
+        MOVE_RIGHT,
+        EXIT,
+        NONE
     }
     internal class KeyReading
     {
@@ -26,21 +28,20 @@
         {
             get
             {
-                if ( instance == null )
-                    instance = new KeyReading();
+                instance ??= new KeyReading();
 
                 return instance;
             }
         }
 
-        public char ReadKey()
+        private char ReadKey()
         {
             ConsoleKeyInfo key;
             key = Console.ReadKey( true );
             return key.KeyChar;
         }
 
-        public Enum? PressKeyInStartMenu()
+        public StartMenu PressKeyInStartMenu()
         {
             switch ( ReadKey() )
             {
@@ -53,26 +54,26 @@
                 case '0':
                     return StartMenu.EXIT;
                 default:
-                    Console.Clear();
-                    return null;
+                    return StartMenu.NONE;
             }
         }
 
-        public Enum? MoveItemInGame()
+        public MoveItemInGames MoveItemInGame()
         {
             switch ( ReadKey() )
             {
-                case '8' or 'w':
-                    return MoveItemInGames.MUVE_UP;
-                case '5' or 's':
-                    return MoveItemInGames.MUVE_DOWN;
-                case '4' or 'a':
-                    return MoveItemInGames.MUVE_LEFT;
-                case '6' or 'd':
-                    return MoveItemInGames.MUVE_RIGHT;
+                case '8' or 'w' or 'ц':
+                    return MoveItemInGames.MOVE_UP;
+                case '5' or 's' or 'ы':
+                    return MoveItemInGames.MOVE_DOWN;
+                case '4' or 'a' or 'ф':
+                    return MoveItemInGames.MOVE_LEFT;
+                case '6' or 'd' or 'в':
+                    return MoveItemInGames.MOVE_RIGHT;
+                case 'q' or 'й':
+                    return MoveItemInGames.EXIT;
                 default:
-                    Console.Clear();
-                    return null;
+                    return MoveItemInGames.NONE;
             }
         }
     }

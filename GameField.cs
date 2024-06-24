@@ -91,30 +91,30 @@
 
         }
 
-        public void MoveItem( char ch ) //метод для перемещения пустой фишки
+        public void MoveItem( Enum @enum ) //метод для перемещения пустой фишки
         {
             int[] ZZERO = Search();
             Item temp;
             try
             {
-                switch ( ch )
+                switch ( @enum )
                 {
-                    case '8' or 'w' or 'ц': //Вверх 8 or W
+                    case MoveItemInGames.MOVE_UP: //Вверх 8 or W
                         temp = item[ZZERO[0] - 1, ZZERO[1]];
                         item[ZZERO[0] - 1, ZZERO[1]] = item[ZZERO[0], ZZERO[1]];
                         item[ZZERO[0], ZZERO[1]] = temp;
                         break;
-                    case '5' or 's' or 'ы': //Вниз 2 or S
+                    case MoveItemInGames.MOVE_DOWN: //Вниз 2 or S
                         temp = item[ZZERO[0] + 1, ZZERO[1]];
                         item[ZZERO[0] + 1, ZZERO[1]] = item[ZZERO[0], ZZERO[1]];
                         item[ZZERO[0], ZZERO[1]] = temp;
                         break;
-                    case '4' or 'a' or 'ф': //Влево 4 or A
+                    case MoveItemInGames.MOVE_LEFT: //Влево 4 or A
                         temp = item[ZZERO[0], ZZERO[1] - 1];
                         item[ZZERO[0], ZZERO[1] - 1] = item[ZZERO[0], ZZERO[1]];
                         item[ZZERO[0], ZZERO[1]] = temp;
                         break;
-                    case '6' or 'd' or 'в': //Впрао 6 or D
+                    case MoveItemInGames.MOVE_RIGHT: //Впрао 6 or D
                         temp = item[ZZERO[0], ZZERO[1] + 1];
                         item[ZZERO[0], ZZERO[1] + 1] = item[ZZERO[0], ZZERO[1]];
                         item[ZZERO[0], ZZERO[1]] = temp;

@@ -6,6 +6,7 @@ namespace _15shkiNew
     {
 
         private string control = "Упарвление: 8 - вверх, 5 - вниз, 4 - влево, 6 - вправо или W/A/S/D";
+        MoveItemInGames inGames = MoveItemInGames.NONE;
         private GameManager manager;
         private KeyReading keyReading;
         private static GameUpdate? instance = null;
@@ -22,48 +23,44 @@ namespace _15shkiNew
         {
             get
             {
-                if ( instance == null )
-                {
-                    instance = new GameUpdate();
-                }
+                instance ??= new GameUpdate();
                 return instance;
             }
         }
 
-        private void ReturnStartMenu()
+        private static void ReturnStartMenu()
         {
             Console.WriteLine( "Нажмите любую клавишу для выхода в главное меню" );
             Console.ReadKey( true );
             Console.Clear();
         }
 
-        public void Update( Enum? selectMenu )
+        public void Update( StartMenu start )
         {
 
-            switch ( selectMenu )
+            switch ( start )
             {
                 case StartMenu.START: // Старт
                     startGameSession = true;
                     manager.Show();
                     Console.WriteLine( control );
                     Console.WriteLine( "Нажать \'Q\' для выхода" );
-                    char readKey = keyReading.ReadKey();
-                    if ( readKey == 'q' || readKey == 'й' )
+                    inGames = keyReading.MoveItemInGame();
+                    if ( inGames == MoveItemInGames.EXIT )
                     {
                         startGameSession = false;
                         manager.ResetGame();
                         Console.Clear();
                         break;
                     }
-                    manager.MoveItem( readKey );
+                    manager.MoveItem( inGames );
                     if ( manager.GameWin() )
                     {
                         Console.Clear();
                         Console.WriteLine( "Винер винер чикен динер" );
-                        Console.WriteLine( "Press any key..." );
-                        Console.ReadLine();
                         startGameSession = false;
                         manager.ResetGame();
+                        ReturnStartMenu();
                         break;
                     }
                     Console.Clear();
@@ -88,19 +85,7 @@ namespace _15shkiNew
                 default: break;
             }
         }
-        public bool ExitGame
-        {
-            get
-            {
-                return exitGame;
-            }
-        }
-        public bool StartGameSession
-        {
-            get
-            {
-                return startGameSession;
-            }
-        }
+        public bool ExitGame => exitGame;
+        public bool StartGameSession => startGameSession;
     }
 }

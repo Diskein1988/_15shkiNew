@@ -1,13 +1,34 @@
 ﻿namespace _15shkiNew
-{   
+{
     internal class GameStat
     {
-        public GameStat() 
+        private Player player;
+        private string? nick = "";
+
+        public GameStat()
         {
             Console.Write( "Введи ваше имя: " );
-            string nick = Console.ReadLine();
-            NickName = nick != null ? nick : nick = "Чиполинщик";
+            player = new Player( SetNickName() );
+
         }
-        public string NickName { get; }
+
+        private string SetNickName()
+        {
+            nick = Console.ReadLine();
+            if( nick == "" )
+            {
+                return "Чиполин";
+            }
+            else
+            {
+                return nick;
+            }
+        }
+
+        public string ShowNickName()
+        {
+            return player.NickName;
+        }
+
     }
 }

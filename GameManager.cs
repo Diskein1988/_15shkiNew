@@ -14,9 +14,7 @@
         {
             get
             {
-                if ( instance == null )
-                    instance = new GameManager();
-
+                instance ??= new GameManager();
                 return instance;
             }
         }
@@ -26,9 +24,9 @@
             return gameField.GameWin();
         }
 
-        public void MoveItem( char ch )
+        public void MoveItem( Enum @enum )
         {
-            gameField.MoveItem( ch );
+            gameField.MoveItem( @enum );
         }
 
         public void Show()
