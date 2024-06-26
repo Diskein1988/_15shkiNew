@@ -6,10 +6,11 @@ namespace _15shkiNew
     {
 
         private string control = "Упарвление: 8 - вверх, 5 - вниз, 4 - влево, 6 - вправо или W/A/S/D";
+        private object num = 1;
         MoveItemInGames inGames = MoveItemInGames.NONE;
         private GameManager manager;
         private KeyReading keyReading;
-        private Timer timer;
+        private GameTimer timer;
         private static GameUpdate? instance = null;
         private static bool exitGame = false;
         private static bool startGameSession = false;
@@ -18,7 +19,7 @@ namespace _15shkiNew
         {
             manager = GameManager.GetInstance;
             keyReading = KeyReading.GetInstance;
-            timer = Timer.GetInstance;
+            timer = GameTimer.GetInstance;
         }
 
         public static GameUpdate GetInstance
@@ -70,7 +71,8 @@ namespace _15shkiNew
 
                 case StartMenu.SCORE: // Рекорды
                     Console.Clear();
-                    timer.Start();
+                    GameTimer gameTaimer =  GameTimer.GetInstance;
+                    gameTaimer.Start();
                     ReturnStartMenu();
                     break;
 
