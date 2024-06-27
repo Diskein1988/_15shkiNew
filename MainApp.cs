@@ -15,7 +15,7 @@
             keyReading = KeyReading.GetInstance;
             gameUpdate = GameUpdate.GetInstance;
             manager = GameManager.GetInstance;
-            gameStat = new();
+            gameStat = GameStat.GetInstance;
         }
 
 

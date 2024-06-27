@@ -10,7 +10,7 @@ namespace _15shkiNew
         MoveItemInGames inGames = MoveItemInGames.NONE;
         private GameManager manager;
         private KeyReading keyReading;
-        private GameTimer timer;
+        private GameStat gameStat;
         private static GameUpdate? instance = null;
         private static bool exitGame = false;
         private static bool startGameSession = false;
@@ -19,7 +19,7 @@ namespace _15shkiNew
         {
             manager = GameManager.GetInstance;
             keyReading = KeyReading.GetInstance;
-            timer = GameTimer.GetInstance;
+            gameStat = GameStat.GetInstance;
         }
 
         public static GameUpdate GetInstance
@@ -45,6 +45,10 @@ namespace _15shkiNew
             {
                 case StartMenu.START: // Старт
                     startGameSession = true;
+                    if ( !gameStat.GSTimer_Enable )
+                    {
+                        gameStat.GSTimer_Start();
+                    }
                     manager.Show();
                     Console.WriteLine( control );
                     Console.WriteLine( "Нажать \'Q\' для выхода" );
@@ -52,6 +56,7 @@ namespace _15shkiNew
                     if ( inGames == MoveItemInGames.EXIT )
                     {
                         startGameSession = false;
+                        gameStat.GSTimer_Stop();
                         manager.ResetGame();
                         Console.Clear();
                         break;
@@ -62,6 +67,7 @@ namespace _15shkiNew
                         Console.Clear();
                         Console.WriteLine( "Винер винер чикен динер" );
                         startGameSession = false;
+                        gameStat.GSTimer_Stop();
                         manager.ResetGame();
                         ReturnStartMenu();
                         break;
@@ -71,8 +77,7 @@ namespace _15shkiNew
 
                 case StartMenu.SCORE: // Рекорды
                     Console.Clear();
-                    GameTimer gameTaimer =  GameTimer.GetInstance;
-                    gameTaimer.Start();
+                    gameStat.ShowGameTime();
                     ReturnStartMenu();
                     break;
 
