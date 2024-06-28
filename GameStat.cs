@@ -69,7 +69,12 @@ namespace _15shkiNew
 
         public void ShowGameTime()
         {
-            Console.WriteLine( $"Игровое время игрока {player.NickName} состовляет: {player.TimeGameSession} секунд\n" );
+            Console.WriteLine( $"Игровое время игрока состовляет: {player.TimeGameSession} секунд\n" );
+        }
+
+        public void ShowGameWin()
+        {
+            Console.WriteLine($"Количество побед: {player.GameWin}");
         }
 
         public bool GSTimer_Enable

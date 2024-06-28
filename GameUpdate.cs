@@ -77,6 +77,7 @@ namespace _15shkiNew
 
                 case StartMenu.SCORE: // Рекорды
                     Console.Clear();
+                    gameStat.ShowGameWin();
                     gameStat.ShowGameTime();
                     ReturnStartMenu();
                     break;

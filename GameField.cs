@@ -2,8 +2,8 @@
 {
     internal class GameField
     {
-        private const int SIZE_X = 3;
-        private const int SIZE_Y = 3;
+        private const int SIZE_X = 4;
+        private const int SIZE_Y = 4;
 
         private Item[,] item;
         public GameField()
