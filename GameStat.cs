@@ -7,10 +7,13 @@ namespace _15shkiNew
         private Player player;
         private System.Timers.Timer GSTimer;
         private static GameStat? instance = null;
+        private GameDataSaver? gameDataSaver;
 
         private GameStat()
         {
             Console.Write( "Введи ваше имя: " );
+            gameDataSaver = GameDataSaver.GetInstance;
+            gameDataSaver.DataWriter("popo");
             player = new Player( SetNickName() );
             GSTimer = new System.Timers.Timer();
             GSTimer.Elapsed += UpdateGameTime;

@@ -1,4 +1,5 @@
 ﻿using CsvHelper;
+using CsvHelper.Configuration;
 using CsvHelper.Configuration.Attributes;
 using System.Globalization;
 
@@ -24,10 +25,7 @@ namespace _15shkiNew
 
         private GameDataSaver()
         {
-            if( !File.Exists( "data.csv" ) )
-            {
-                File.Create( "data.csv" );
-            }
+            CreatData();
         }
 
         public static GameDataSaver GetInstance
@@ -39,19 +37,44 @@ namespace _15shkiNew
             }
         }
 
-        public void DataWriter()
+        private void CreatData()
         {
+            if ( !File.Exists( "data.csv" ) )
+            {
+                File.Create( "data.csv" ).Close();
+            }
+        }
+
+        public void DataWriter( string nick)
+        {
+            using var reader = new StreamReader( "data.csv" );
+            using var csvReader = new CsvReader( reader, CultureInfo.InvariantCulture );
+            var data = csvReader.GetRecords<PlayerData>();
+            foreach ( var item in data )
+            {
+                if ( item.NickName != nick )
+                {
+                    
+                }
+            }
+            reader.Close();
             playerDatas = new List<PlayerData>
             {
                 new PlayerData
                 {
-                    NickName = "Test", GameTime = 100, GameWin = 50
+                    NickName = nick, GameTime = 100, GameWin = 50
                 }
             };
 
             using var writer = new StreamWriter( "data.csv" );
-            using var csv = new CsvWriter( writer, CultureInfo.InvariantCulture );
-            csv.WriteHeader<PlayerData>();
+            using var csvWriter = new CsvWriter( writer, CultureInfo.InvariantCulture );
+            csvWriter.WriteHeader<PlayerData>();
+            csvWriter.NextRecord();
+            foreach ( var playerData in playerDatas )
+            {
+                csvWriter.WriteRecord( playerData );
+                csvWriter.NextRecord();
+            }
             
         }
 

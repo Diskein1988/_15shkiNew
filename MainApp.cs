@@ -8,7 +8,6 @@
         private GameStat gameStat;
         private GameManager manager;
         private GameUpdate gameUpdate;
-        private GameDataSaver gameDataSaver;
 
         public MainApp()
         {
@@ -17,7 +16,6 @@
             gameUpdate = GameUpdate.GetInstance;
             manager = GameManager.GetInstance;
             gameStat = GameStat.GetInstance;
-            gameDataSaver = GameDataSaver.GetInstance;
         }
 
 
