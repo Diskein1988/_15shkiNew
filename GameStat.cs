@@ -13,8 +13,8 @@ namespace _15shkiNew
         {
             Console.Write( "Введи ваше имя: " );
             gameDataSaver = GameDataSaver.GetInstance;
-            gameDataSaver.DataWriter("popo");
             player = new Player( SetNickName() );
+            gameDataSaver.CreatingPlayerData(player.NickName);
             GSTimer = new System.Timers.Timer();
             GSTimer.Elapsed += UpdateGameTime;
             GSTimer.Interval = 1000;

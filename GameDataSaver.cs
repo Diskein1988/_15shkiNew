@@ -10,9 +10,9 @@ namespace _15shkiNew
         private static GameDataSaver? instance;
         private List<PlayerData> playerDatas;
 
-        class PlayerData
+        private class PlayerData
         {
-            [Name("NickName")]
+            [Name( "NickName" )]
             public string? NickName { get; set; }
 
             [Name( "GameWin" )]
@@ -45,37 +45,73 @@ namespace _15shkiNew
             }
         }
 
-        public void DataWriter( string nick)
+        public void CreatingPlayerData( string nick )
         {
-            using var reader = new StreamReader( "data.csv" );
-            using var csvReader = new CsvReader( reader, CultureInfo.InvariantCulture );
-            var data = csvReader.GetRecords<PlayerData>();
-            foreach ( var item in data )
+            playerDatas = new List<PlayerData>();
+            bool availableNickName = true;
+            DataReader();
+
+            if ( playerDatas.FirstOrDefault() == null )
             {
-                if ( item.NickName != nick )
+                playerDatas.AddRange(
+                   new List<PlayerData>()
+                   {
+                       {
+                           new PlayerData
+                           {
+                               NickName = nick,
+                               GameTime = 0,
+                               GameWin = 0
+                           }
+                       }
+                   }
+                   );
+                DataWriter();
+            }
+
+            foreach ( var e in playerDatas )
+            {
+                if ( e.NickName == nick )
                 {
-                    
+                    availableNickName = false;
+                    break;
                 }
             }
-            reader.Close();
-            playerDatas = new List<PlayerData>
-            {
-                new PlayerData
-                {
-                    NickName = nick, GameTime = 100, GameWin = 50
-                }
-            };
 
+            if ( availableNickName )
+            {
+                playerDatas.AddRange(
+                   new List<PlayerData>()
+                   {
+                       {new PlayerData { NickName = nick, GameTime = 0, GameWin = 0 }
+                   }
+                   }
+                   );
+                DataWriter();
+            }
+        }
+
+        private void DataReader()
+        {
+            var reader = new StreamReader( "data.csv" );
+            var csvReader = new CsvReader( reader, CultureInfo.InvariantCulture );
+            var data = csvReader.GetRecords<PlayerData>();
+            playerDatas.AddRange( data );
+            reader.Close();
+        }
+
+        private void DataWriter()
+        {
             using var writer = new StreamWriter( "data.csv" );
             using var csvWriter = new CsvWriter( writer, CultureInfo.InvariantCulture );
             csvWriter.WriteHeader<PlayerData>();
             csvWriter.NextRecord();
+
             foreach ( var playerData in playerDatas )
             {
                 csvWriter.WriteRecord( playerData );
                 csvWriter.NextRecord();
             }
-            
         }
 
     }
