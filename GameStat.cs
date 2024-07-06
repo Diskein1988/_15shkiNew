@@ -40,7 +40,7 @@ namespace _15shkiNew
             }
             else if ( nick.Length > 20 )
             {
-                Console.WriteLine( "Ник слишком длинный. Более 15 символов" );
+                Console.WriteLine( "Ник слишком длинный. Более 20 символов" );
                 return SetNickName();
             }
             else
@@ -80,13 +80,20 @@ namespace _15shkiNew
             Console.WriteLine($"Количество побед: {player.GameWin}");
         }
 
-        public bool GSTimer_Enable
+        public void ShowTotalStat()
         {
-            get
-            {
-                return GSTimer.Enabled;
-            }
+            var temp = gameDataSaver.GetTotalStatPlayer( player.NickName );
+            Console.WriteLine( $"Общая игровая статистика игрока \"{temp[0]}\"\n" +
+                $"Число побед: {temp[1]}\n" +
+                $"Игровое время: {temp[2]}\n" );
         }
+
+        public void SaveTotalStat()
+        {
+            gameDataSaver.SetTotalStatPlayer( player.NickName, player.TimeGameSession, player.GameWin );
+        }
+
+        public bool GSTimer_Enable => GSTimer.Enabled;
 
     }
 }

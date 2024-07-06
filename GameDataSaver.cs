@@ -1,5 +1,4 @@
 ﻿using CsvHelper;
-using CsvHelper.Configuration;
 using CsvHelper.Configuration.Attributes;
 using System.Globalization;
 
@@ -25,7 +24,7 @@ namespace _15shkiNew
 
         private GameDataSaver()
         {
-            CreatData();
+            CreatDataFile();
         }
 
         public static GameDataSaver GetInstance
@@ -37,9 +36,9 @@ namespace _15shkiNew
             }
         }
 
-        private void CreatData()
+        private static void CreatDataFile()
         {
-            if ( !File.Exists( "data.csv" ) )
+            if( !File.Exists( "data.csv" ) )
             {
                 File.Create( "data.csv" ).Close();
             }
@@ -51,7 +50,7 @@ namespace _15shkiNew
             bool availableNickName = true;
             DataReader();
 
-            if ( playerDatas.FirstOrDefault() == null )
+            if( playerDatas.FirstOrDefault() == null )
             {
                 playerDatas.AddRange(
                    new List<PlayerData>()
@@ -59,7 +58,7 @@ namespace _15shkiNew
                        {
                            new PlayerData
                            {
-                               NickName = nick,
+                               NickName = "nick",
                                GameTime = 0,
                                GameWin = 0
                            }
@@ -69,16 +68,16 @@ namespace _15shkiNew
                 DataWriter();
             }
 
-            foreach ( var e in playerDatas )
+            foreach( var e in playerDatas )
             {
-                if ( e.NickName == nick )
+                if( e.NickName == nick )
                 {
                     availableNickName = false;
                     break;
                 }
             }
 
-            if ( availableNickName )
+            if( availableNickName )
             {
                 playerDatas.AddRange(
                    new List<PlayerData>()
@@ -89,6 +88,40 @@ namespace _15shkiNew
                    );
                 DataWriter();
             }
+        }
+
+        public object[] GetTotalStatPlayer( string nick )
+        {
+            int index = 0;
+            object[] getPlayerData = new object[3];
+            for ( int i = 0; i < playerDatas.Count; i++ )
+            {
+                if ( playerDatas[i].NickName == nick )
+                {
+                    index = i;
+                }
+            }
+            getPlayerData[0] = playerDatas[index].NickName;
+            getPlayerData[1] = playerDatas[index].GameWin;
+            getPlayerData[2] = playerDatas[index].GameTime;
+            return getPlayerData;
+
+
+        }
+
+        public void SetTotalStatPlayer(string nick, int time, int win)
+        {
+            int index = 0;
+            for( int i = 0; i < playerDatas.Count; i++ )
+            {
+                if( playerDatas[i].NickName == nick )
+                {
+                    index = i;
+                }
+            }
+            playerDatas[index].GameTime += time;
+            playerDatas[index].GameWin += win;
+            DataWriter();
         }
 
         private void DataReader()
@@ -107,7 +140,7 @@ namespace _15shkiNew
             csvWriter.WriteHeader<PlayerData>();
             csvWriter.NextRecord();
 
-            foreach ( var playerData in playerDatas )
+            foreach( var playerData in playerDatas )
             {
                 csvWriter.WriteRecord( playerData );
                 csvWriter.NextRecord();

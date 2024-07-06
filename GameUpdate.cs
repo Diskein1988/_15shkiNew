@@ -57,6 +57,7 @@ namespace _15shkiNew
                     {
                         startGameSession = false;
                         gameStat.GSTimer_Stop();
+                        gameStat.SaveTotalStat();
                         manager.ResetGame();
                         Console.Clear();
                         break;
@@ -68,6 +69,7 @@ namespace _15shkiNew
                         Console.WriteLine( "Винер винер чикен динер" );
                         startGameSession = false;
                         gameStat.GSTimer_Stop();
+                        gameStat.SaveTotalStat();
                         manager.ResetGame();
                         ReturnStartMenu();
                         break;
@@ -77,8 +79,10 @@ namespace _15shkiNew
 
                 case StartMenu.SCORE: // Рекорды
                     Console.Clear();
+                    Console.WriteLine("Текущая игровая сессия:");
                     gameStat.ShowGameWin();
                     gameStat.ShowGameTime();
+                    gameStat.ShowTotalStat();
                     ReturnStartMenu();
                     break;
 
