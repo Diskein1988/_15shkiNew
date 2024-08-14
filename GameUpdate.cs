@@ -47,6 +47,7 @@ namespace _15shkiNew
                     startGameSession = true;
                     if ( !gameStat.GSTimer_Enable )
                     {
+                        gameStat.ResetCurrentGameTime();
                         gameStat.GSTimer_Start();
                     }
                     manager.Show();

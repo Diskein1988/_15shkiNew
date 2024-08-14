@@ -93,6 +93,11 @@ namespace _15shkiNew
             gameDataSaver.SetTotalStatPlayer( player.NickName, player.TimeGameSession, player.GameWin );
         }
 
+        public void ResetCurrentGameTime()
+        {
+            player.TimeGameSession = 0;
+        }
+
         public bool GSTimer_Enable => GSTimer.Enabled;
 
     }
