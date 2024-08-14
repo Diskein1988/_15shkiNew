@@ -12,7 +12,7 @@ namespace _15shkiNew
         private KeyReading keyReading;
         private GameStat gameStat;
         private static GameUpdate? instance = null;
-        private static bool exitGame = false;
+        private bool exitGame = false;
         private static bool startGameSession = false;
 
         private GameUpdate()
