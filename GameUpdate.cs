@@ -6,11 +6,13 @@ namespace _15shkiNew
     {
 
         private string control = "Упарвление: 8 - вверх, 5 - вниз, 4 - влево, 6 - вправо или W/A/S/D";
+        private string infoStat = "Управление: 1 - локальная статистика, 2 - глобальная стата, 3 - выход";
         private object num = 1;
-        MoveItemInGames inGames = MoveItemInGames.NONE;
+        private MoveItemInGames inGames = MoveItemInGames.NONE;
         private GameManager manager;
         private KeyReading keyReading;
         private GameStat gameStat;
+        private TCPConnect tCPConnect;
         private static GameUpdate? instance = null;
         private bool exitGame = false;
         private static bool startGameSession = false;
@@ -20,6 +22,7 @@ namespace _15shkiNew
             manager = GameManager.GetInstance;
             keyReading = KeyReading.GetInstance;
             gameStat = GameStat.GetInstance;
+            tCPConnect = TCPConnect.GetInstance;
         }
 
         public static GameUpdate GetInstance
@@ -76,14 +79,32 @@ namespace _15shkiNew
                         break;
                     }
                     Console.Clear();
-                    break;
+                    break; //Старт
 
                 case StartMenu.SCORE: // Рекорды
                     Console.Clear();
-                    Console.WriteLine("Текущая игровая сессия:");
-                    gameStat.ShowGameWin();
-                    gameStat.ShowGameTime();
-                    gameStat.ShowTotalStat();
+                    do
+                    {
+                        Console.WriteLine( infoStat );
+                        switch ( keyReading.GetStaticMenu() )
+                        {
+                            case StaticMenu.LOCAL:
+                                gameStat.ShowGameWin();
+                                gameStat.ShowGameTime();
+                                break;
+                            case StaticMenu.GLOBAL:
+                                Console.Write( "Тестовое соединение с сервером, введите произвольный текст: " );
+                                tCPConnect.SendMsg( Console.ReadLine() );
+                                Console.WriteLine(tCPConnect.GetMassege);
+                                break;
+                            case StaticMenu.EXIT:
+                                return;
+                            default:
+                                break;
+                        }
+                    }
+                    while ( true );
+
                     ReturnStartMenu();
                     break;
 

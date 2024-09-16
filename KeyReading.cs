@@ -18,6 +18,14 @@
         EXIT,
         NONE
     }
+
+    public enum StaticMenu
+    {
+        LOCAL,
+        GLOBAL,
+        EXIT,
+        NONE
+    }
     internal class KeyReading
     {
         private static KeyReading? instance = null;
@@ -74,6 +82,21 @@
                     return MoveItemInGames.EXIT;
                 default:
                     return MoveItemInGames.NONE;
+            }
+        }
+
+        public StaticMenu GetStaticMenu()
+        {
+            switch ( ReadKey() )
+            {
+                case '1':
+                    return StaticMenu.LOCAL;
+                case '2':
+                    return StaticMenu.GLOBAL;
+                case '3':
+                    return StaticMenu.EXIT;
+                default:
+                    return StaticMenu.NONE;
             }
         }
     }
